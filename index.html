@@ -218,6 +218,7 @@
                     <label for="cakeSelect">Выберите начинку</label>
                     <select id="cakeSelect">
                         <option value="milky_girl">Молочная девочка</option>
+                        <option value="pistachio_raspberry">Фисташка - Малина</option>
                     </select>
                 </div>
                 <div class="input-group">
@@ -250,20 +251,30 @@
     </div>
 
     <script>
+        // 1. БАЗА ЦЕН ИНГРЕДИЕНТОВ
         const db = {
             flour: { name: "Мука", price: 62, unit: 1000, measure: "г" },
             sugar: { name: "Сахар", price: 89, unit: 1000, measure: "г" },
+            powdered_sugar: { name: "Сахарная пудра", price: 100, unit: 500, measure: "г" },
             butter: { name: "Масло сливочное", price: 160, unit: 180, measure: "г" },
+            veg_oil: { name: "Масло растительное", price: 120, unit: 1000, measure: "г" },
             condensed: { name: "Сгущенное молоко", price: 139, unit: 380, measure: "г" },
             baking_powder: { name: "Разрыхлитель", price: 14, unit: 10, measure: "г" },
             eggs: { name: "Яйца С0", price: 85, unit: 10, measure: "шт" },
             cream_cheese: { name: "Творожный сыр", price: 230, unit: 350, measure: "г" },
             mascarpone: { name: "Маскарпоне", price: 259, unit: 250, measure: "г" },
-            raspberry: { name: "Малина", price: 650, unit: 1000, measure: "г" },
-            cream: { name: "Сливки", price: 169, unit: 250, measure: "г" },
+            raspberry: { name: "Малина замороженная", price: 650, unit: 1000, measure: "г" },
+            sublimated_raspberry: { name: "Сублимированная малина", price: 460, unit: 50, measure: "г" },
+            cream: { name: "Сливки 33%", price: 169, unit: 250, measure: "г" },
+            milk: { name: "Молоко", price: 90, unit: 900, measure: "г" },
+            white_chocolate: { name: "Белый шоколад", price: 1400, unit: 1000, measure: "г" },
+            pistachios: { name: "Фисташки обжаренные", price: 1100, unit: 1000, measure: "г" },
+            pistachio_paste: { name: "Фисташковая паста", price: 535, unit: 200, measure: "г" },
+            starch: { name: "Кукурузный крахмал", price: 60, unit: 200, measure: "г" },
             vanillin: { name: "Ванилин", price: 15, unit: 1, measure: "уп" }
         };
 
+        // 2. РЕЦЕПТУРЫ
         const recipes = {
             milky_girl: {
                 name: "Молочная девочка",
@@ -280,6 +291,28 @@
                     { id: "sugar", qty: 100 },
                     { id: "vanillin", qty: 1 },
                     { id: "raspberry", qty: 300 }
+                ]
+            },
+            pistachio_raspberry: {
+                name: "Фисташка - Малина",
+                expected_yield_kg: 3.15, // Выход замеса с учетом всех слоев и покрытия
+                items: [
+                    { id: "eggs", qty: 5 },
+                    { id: "sugar", qty: 190 }, // 150г бисквит + 40г начинка
+                    { id: "milk", qty: 75 },
+                    { id: "veg_oil", qty: 85 }, // 75г бисквит + 10г хрустяшка
+                    { id: "pistachio_paste", qty: 75 },
+                    { id: "flour", qty: 200 },
+                    { id: "baking_powder", qty: 7 },
+                    { id: "cream_cheese", qty: 1300 }, // 600г крем + 700г покрытие
+                    { id: "cream", qty: 200 },
+                    { id: "powdered_sugar", qty: 130 },
+                    { id: "pistachios", qty: 40 },
+                    { id: "sublimated_raspberry", qty: 10 },
+                    { id: "white_chocolate", qty: 100 },
+                    { id: "raspberry", qty: 150 },
+                    { id: "starch", qty: 15 },
+                    { id: "butter", qty: 330 } // На покрытие
                 ]
             }
         };
