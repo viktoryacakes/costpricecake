@@ -99,7 +99,6 @@
 
         select:focus, input[type="text"]:focus { border-color: var(--blue-dark); }
 
-        /* Стили для кнопок быстрого выбора веса */
         .quick-weights {
             display: flex;
             gap: 6px;
@@ -224,7 +223,6 @@
                 <div class="input-group">
                     <label for="weightInput">Вес торта (кг)</label>
                     <div>
-                        <!-- inputmode="decimal" показывает удобную клавиатуру на телефонах -->
                         <input type="text" inputmode="decimal" id="weightInput" value="1.5" placeholder="Например: 1.2 или 2,5">
                         <div class="quick-weights" id="quickWeights">
                             <button type="button" class="qw-btn" data-weight="1">1 кг</button>
@@ -261,7 +259,7 @@
             eggs: { name: "Яйца С0", price: 85, unit: 10, measure: "шт" },
             cream_cheese: { name: "Творожный сыр", price: 230, unit: 350, measure: "г" },
             mascarpone: { name: "Маскарпоне", price: 259, unit: 250, measure: "г" },
-            raspberry: { name: "Малина", price: 400, unit: 1000, measure: "г" },
+            raspberry: { name: "Малина", price: 650, unit: 1000, measure: "г" },
             cream: { name: "Сливки", price: 169, unit: 250, measure: "г" },
             vanillin: { name: "Ванилин", price: 15, unit: 1, measure: "уп" }
         };
@@ -293,7 +291,6 @@
         
         function calculate() {
             const recipeKey = select.value;
-            // Заменяем запятую на точку, чтобы JavaScript понял дробное число
             const rawInputValue = input.value.replace(',', '.');
             const targetWeight = parseFloat(rawInputValue) || 0;
             const recipe = recipes[recipeKey];
@@ -339,7 +336,6 @@
             document.getElementById('rawWeight').textContent = (rawWeightGrams / 1000).toFixed(2) + ' кг';
             list.innerHTML = breakdownHTML;
 
-            // Обновляем активную кнопку быстрого веса
             qwButtons.forEach(btn => {
                 if (btn.dataset.weight === rawInputValue) {
                     btn.classList.add('active');
@@ -349,11 +345,9 @@
             });
         }
 
-        // Слушатели событий
         select.addEventListener('change', calculate);
         input.addEventListener('input', calculate);
 
-        // Обработка кликов по кнопкам быстрого веса
         qwButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 input.value = e.target.dataset.weight;
